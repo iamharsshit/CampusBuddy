@@ -10,6 +10,7 @@ import io.realm.RealmObject;
  */
 
 public class Group extends RealmObject{
+
     @SerializedName("group_name")
     private String name;
     @SerializedName("group_name_hindi")

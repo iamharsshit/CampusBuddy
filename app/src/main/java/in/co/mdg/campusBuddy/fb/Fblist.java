@@ -136,42 +136,43 @@ public class Fblist extends AppCompatActivity implements ClickListener {
         listview.setVisibility(View.INVISIBLE);
         selectedFbPagesList.setVisibility(View.INVISIBLE);
         final int[] imageUrls = {0};
-        for(int i=0;i<listofvalues.size();i++) {
-            final int position =i;
-            Bundle params = new Bundle();
-            params.putBoolean("redirect", false);
-            final boolean[] urlReceived = {false};
-            String pageId = listofvalues.get(position).getPage_id();
-            new GraphRequest(AccessToken.getCurrentAccessToken(), "/" + pageId + "/picture", params, HttpMethod.GET,
-                    new GraphRequest.Callback() {
-                        @Override
-                        public void onCompleted(GraphResponse response) {
-                            if (response != null) {
-                                try {
-                                    fbPageImages[position] = (response.getJSONObject().getJSONObject("data").getString("url"));
-                                    imageUrls[0]++;
-                                    if( imageUrls[0] == listofvalues.size()){
-                                        setListAdapter();
-                                    }
-                                }catch (JSONException e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(Fblist.this,"JSON",Toast.LENGTH_SHORT).show();
-                                    Log.e("responseCheck", "Response not received");
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                    submitb.setVisibility(View.INVISIBLE);
-                                    Snackbar snackbar = Snackbar
-                                            .make(fbPageLayout, "No Internet Connection!", Snackbar.LENGTH_LONG);
 
-                                    snackbar.show();
+            for (int i = 0; i < listofvalues.size(); i++) {
+                final int position = i;
+                Bundle params = new Bundle();
+                params.putBoolean("redirect", false);
+                final boolean[] urlReceived = {false};
+                String pageId = listofvalues.get(position).getPage_id();
+                new GraphRequest(AccessToken.getCurrentAccessToken(), "/" + pageId + "/picture", params, HttpMethod.GET,
+                        new GraphRequest.Callback() {
+                            @Override
+                            public void onCompleted(GraphResponse response) {
+                                if (response != null) {
+                                    try {
+                                        fbPageImages[position] = (response.getJSONObject().getJSONObject("data").getString("url"));
+                                        imageUrls[0]++;
+                                        if (imageUrls[0] == listofvalues.size()) {
+                                            setListAdapter();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(Fblist.this, "JSON", Toast.LENGTH_SHORT).show();
+                                        Log.e("responseCheck", "Response not received");
+                                    } catch (NullPointerException e) {
+                                        e.printStackTrace();
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                        submitb.setVisibility(View.INVISIBLE);
+                                        Snackbar snackbar = Snackbar
+                                                .make(fbPageLayout, "No Internet Connection!", Snackbar.LENGTH_LONG);
+
+                                        snackbar.show();
+                                    }
+                                } else {
+                                    Log.e("responseRecCheck", "Response null");
                                 }
-                            } else {
-                                Log.e("responseRecCheck", "Response null");
                             }
-                        }
-                    }).executeAsync();
-        }
+                        }).executeAsync();
+            }
 
         fbpagesliked = new ArrayList<String>();
         callbackManager = CallbackManager.Factory.create();

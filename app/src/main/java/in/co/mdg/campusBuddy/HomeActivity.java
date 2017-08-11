@@ -52,6 +52,7 @@ public class HomeActivity extends FragmentActivity {
         adapter.addFrag(new ContactsFragment(), "Contacts Fragment");
         adapter.addFrag(new FbFeedFragment(), "FbFeedFragment Fragment");
         adapter.addFrag(new AboutUsNew(), "AboutUs Fragment");
+        adapter.addFrag(new SimpleMap(), "Simple Map");
         viewPager.setAdapter(adapter);
         if (getIntent().hasExtra("open")) {
             if (getIntent().getStringExtra("open").equals("fb_feed")) {
@@ -75,6 +76,9 @@ public class HomeActivity extends FragmentActivity {
                                 break;
                             case R.id.action_about_us:
                                 viewPager.setCurrentItem(2);
+                                break;
+                            case R.id.action_simple_map:
+                                viewPager.setCurrentItem(3);
                                 break;
                         }
                         updateNavigationBarState(item.getItemId());
@@ -105,6 +109,8 @@ public class HomeActivity extends FragmentActivity {
                 return R.id.action_notices;
             case 2:
                 return R.id.action_about_us;
+            case 3:
+                return R.id.action_simple_map;
             default:
                 return -1;
         }

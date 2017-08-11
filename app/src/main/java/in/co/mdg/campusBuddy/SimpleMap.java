@@ -60,10 +60,12 @@ public class SimpleMap extends Fragment
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
         mGoogleMap = map;
         mGoogleMap.setMyLocationEnabled(true);
         buildGoogleApiClient();
         mGoogleApiClient.connect();
+
     }
 
     @Override

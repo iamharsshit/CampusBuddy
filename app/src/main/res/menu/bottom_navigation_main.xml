@@ -19,8 +19,15 @@
         android:id="@+id/action_about_us"
         android:enabled="true"
         android:icon="@drawable/more_icon"
-        android:title="More"
+        android:title="About Us"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_simple_map"
+        android:enabled="true"
+        android:icon="@drawable/maptext"
+        android:title="Map"
+        app:showAsAction="ifRoom"
+        />
     <!--<item-->
     <!--android:id="@+id/action_calendar"-->
     <!--android:enabled="true"-->
